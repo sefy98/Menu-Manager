@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 6, 2017, 9:02:30 AM
+    Author     : zolroyd
+*/
+.item {
+    display: block;
+    font-size: 18px;
+    color: #444;
+    font-weight: 400;
+    white-space: normal;
+    word-wrap: break-word;
+    width: 100px;
+    position: relative;
+}
+.animateRight {
+    -webkit-animation-name: slideRight; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1.5s; /* Safari 4.0 - 8.0 */
+    animation-name: slideRight;
+    animation-duration: 1.5s;
+}
+/* Safari 4.0 - 8.0 */
+/*@-webkit-keyframes slideRight {
+    0%   {background-color:red; left:0px; top:0px;}
+    100%  {background-color:red; left:100px; top:0px; }
+}
+
+ Standard syntax 
+@keyframes slideRight {
+    0%   {background-color:red; left:0px; top:0px;}
+    100%  {background-color:red; left:100px; top:0px;}
+}*/
