@@ -1,51 +1,49 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import React, {Component} from 'react';
 
 var menuDom, menuHtml = '', fontSize, spanWidth = 100;
 function drawMenu() {
     menuDom = document.getElementById("mainMenu");
-    addCategory();
+    addColumn();
     menuDom.innerHTML = menuHtml;
 }
 
-function addCategory(manifest = '', parent = '') {
+function addColumn(manifest = '', parent = '') {
     var name, redirect, menuRow = '';
     if(manifest !== ''){
+    	console.log(manifest);
         menuJson = manifest;
-    } else {
-        menuJson = menu.mainMenu;
     }
     for (var item in menuJson) {
-        name = menuJson[item].name;
-        redirect = menuJson[item].redirect;
-        subcategories = menuJson[item].subcategories;
-        menuRow = menuRow.concat("<span id='item_" + item + "' class='item'>");
-        if(redirect !== undefined) {
-            menuRow = menuRow.concat('<a href="' + redirect + '">' + name + '</a>');
-        } else {
-            menuRow = name;
+    	menuJson.itemNumber = item;
+        subcategory = menuJson[item].subcategory;
+
+        if(subcategory !== undefined) {
+            return addColumn(subcategory);
         }
-        menuRow = menuRow.concat("</span>");
-        if(subcategories !== undefined) {
-            menuRow = menuRow.concat(displaySubCat(subcategories));
-            //menuDom.addEventListener();
-            return menuHtml = "<span id='item_" + item + "_main' class='item'>" + menuRow + "</span>";
-        }
-        menuHtml = "<span id='item_" + parent + "_subcategories' class='animateRight item'>" + menuRow + "</span>";
+	    menu.push(displayCat(manifest));
     }
-    if(parent !== '') {
-        
-    }
-    return menuHtml;
+    return menu;
 }
-function displaySubCat(subcategory) {
+function displayCat(manifest) {
+    return <span id={getItemName(manifest.itemNumber)}> {getLink(manifest)} </span>;
+}
+function getLink(manifest){
+	return (manifest.redirect !== undefined)
+		? <a href={manifest.redirect}> {manifest.name} </a>
+		: <div id={getItemName(manifest.itemNumber)}> {manifest.name} </div>;
+}
+function getItemName(item){
+    return "item_" + item;
+}
+function getColumn(manifest) {
     if(subcategory.visible !== false){
-        return menuHtml = "<span id='item_" + item + "_main' class='item'>" + menuRow + "</span>";
+        return displayCat(manifest);
     }
 }
 function mouseOver() {
     
 }
+ReactDOM.render(
+	<drawMenu />,
+	document.getElementById('root')
+);

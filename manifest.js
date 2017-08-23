@@ -10,7 +10,7 @@ var menu =
         "tools": {
             "name": "Tools",
             "redirect": "/tools",
-            "subcategories": {
+            "subcategory": {
                 "hardware": {
                     "name": "Hardware",
                     "redirect": "/tools/hardware"
